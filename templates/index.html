@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diddy dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"> </script>
+</head>
+<body>
+    <div class="header">
+        <h1>Diddy Dashboard</h1>
+    </div>
+
+    <div class="hawk-1">
+        <h1>the hawk and the tuah</h1>
+        <canvas id="myChart" width="400" height="100"></canvas>
+    </div>
+
+    
+</body>
+<style>
+   body {
+    background-color: #35374B;
+    color : white;
+   }
+   .header {
+        overflow: hidden;
+        background-color: #0C134F;
+        padding: 20px 10px;
+        border-radius: 15px;
+        text-align: center;
+    }
+
+</style>
+
+<script>
+
+
+Chart.defaults.global.defaultFontColor = "#fff";
+
+var data = {
+    labels: ['stillwater'],
+    datasets: [{
+        label: "those who know",
+        data: [0],
+        bordercolor :"#fff", 
+        fill:false,
+        borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(255, 205, 86, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(153, 102, 255, 1)',
+    ],
+    }]
+};
+
+var config = {
+    type:'line',
+    data: data,
+    responsive: true,
+}
+
+var myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+);
+
+
+const BrainrotListe = ['mango','winter arc','crashout','Sadam','skibidi','Cosco guys',
+                        'rizz', 'Drippy cheese', 'fanum tax', 'phonk trollface', 'sigma', 'nonchalant', 'Aura', 'Edging',
+                        'smurf cat','those who know']
+
+window.setInterval(mycallback,2000);
+
+
+
+function mycallback(){
+    var newlabel = BrainrotListe[Math.floor(Math.random() * BrainrotListe.length)];
+    var value = Math.floor(Math.random() * 100);
+    if(data.labels.length >= 20){
+        data.labels.shift();
+        data.datasets[0].data.shift();
+    }
+    if(value == 0){
+        data.datasets[0].data.push(value);
+        data.labels.push('stillwater');
+    }
+    else{
+        data.labels.push(newlabel);
+        data.datasets[0].data.push(value);
+    }
+    
+    myChart.update();
+}
+
+</script>
+</html>
